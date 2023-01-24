@@ -1,7 +1,10 @@
 const express = require("express");
 const { connection } = require("./config/db");
 const { userRouter } = require("./routes/Users.route");
-const { productRouter } = require("./routes/Products.route");
+const {
+     productRouter,
+     addBulkDataManually,
+} = require("./routes/Products.route");
 const { authenticate } = require("./middlewares/authenticate.middleware");
 
 require("dotenv").config();
@@ -15,12 +18,14 @@ app.get("/", (req, res) => {
      res.send("Welcome to the mini project");
 });
 app.use("/user", userRouter);
-app.use(authenticate);
+// app.use(authenticate);
 app.use("/products", productRouter);
 
 app.listen(process.env.port, async () => {
      try {
           await connection;
+          // await addBulkDataManually();
+
           console.log("SUCCESSFULL CONNECTED TO DB");
      } catch (error) {
           console.log("SOMTHING WENT WRONG");

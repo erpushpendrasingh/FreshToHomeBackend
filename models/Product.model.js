@@ -4,13 +4,14 @@ const ProductSchema = mongoose.Schema({
      title: String,
      category: String,
      mrp: Number,
-     lignThroughMrp: Number,
+     lignThroughMrp: String,
      desc: String,
      storageInstructions: String,
      marketedBy: String,
-     weight: Number,
+     weight: String,
      image: String,
      cartQuantity: Number,
+     price: Number,
 });
 const ProductModel = mongoose.model("product", ProductSchema);
 

@@ -1,4 +1,5 @@
 const express = require("express");
+const { products } = require("../constants/data");
 const { ProductModel } = require("../models/Product.model");
 const productRouter = express.Router();
 
@@ -50,7 +51,16 @@ productRouter.delete("/delete/:id", async (req, res) => {
           res.send({ msg: "Something went wrong" });
      }
 });
+const addBulkDataManually = async () => {
+     try {
+          await ProductModel.insertMany(products);
+          console.log("Bulk Data Uploaded SUCCESSFULLY");
+     } catch (error) {
+          console.log(error, "FAILED TO Upload Bulk Data");
+     }
+};
 
 module.exports = {
      productRouter,
+     addBulkDataManually,
 };
